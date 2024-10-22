@@ -1,0 +1,54 @@
+<mujoco model="2d_slider">
+    <actuator>
+        <motor name="slide_x" joint="slider_x" gear="10" ctrllimited="true" ctrlrange="-1 1" />
+        <motor name="slide_y" joint="slider_y" gear="10" ctrllimited="true" ctrlrange="-1 1" />
+    </actuator>
+    <asset>
+        <texture name="grid" type="2d" builtin="checker" rgb1=".1 .2 .3" rgb2=".2 .3 .4" width="300" height="300" mark="edge" markrgb=".2 .3 .4"/>
+        <material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance=".2"/>
+        <material name="self" rgba=".7 .5 .3 1"/>
+        <material name="self_default" rgba=".7 .5 .3 1"/>
+        <material name="self_highlight" rgba="0 .5 .3 1"/>
+        <material name="effector" rgba=".7 .4 .2 1"/>
+        <material name="effector_default" rgba=".7 .4 .2 1"/>
+        <material name="effector_highlight" rgba="0 .5 .3 1"/>
+        <material name="decoration" rgba=".3 .5 .7 1"/>
+        <material name="eye" rgba="0 .2 1 1"/>
+        <material name="target" rgba=".6 .3 .3 1"/>
+        <material name="target_default" rgba=".6 .3 .3 1"/>
+        <material name="target_highlight" rgba=".6 .3 .3 .4"/>
+        <material name="site" rgba=".5 .5 .5 .3"/>
+        <material name="transparent" rgba=".5 .5 .5 .0"/>
+    </asset>
+    <worldbody>
+        <light name="light" pos="0 0 5"/>
+        <camera name="fixed" pos="0 0 4" zaxis="0 0 1"/>
+        <!-- <camera name="lookatbase" mode="targetbody" target="slider_tip" pos="0 -2 2"/> -->
+        <geom name="floor" pos="0 0 -.05" size="4 4 .2" type="plane" material="grid"/>
+        <geom name="rail1" type="capsule" zaxis="1 0 0" size="0.02 2" material="decoration" />
+        <geom name="rail2" type="capsule" zaxis="0 1 0" size="0.02 2" material="decoration" />
+        <body name="slider_x" pos="0 0 1">
+            <joint name="slider_x" type="slide" limited="true" axis="1 0 0" range="-0.1 0.1" solreflimit=".08 1" damping="5e-4"/>
+            <geom name="slider_x" type="box" size="0.2 0.15 0.1"  mass=".1" material="transparent"/>
+            <body name="slider_y">
+                <joint name="slider_y" type="slide" limited="true" axis="0 1 0" range="-0.1 0.1" solreflimit=".08 1" damping="5e-4"/>
+                <geom name="slider_y" type="box" size="0.2 0.15 0.1"  mass=".1" material="transparent"/>
+                <body name="ft_sensor">
+                    <site name="ft_frame" pos="0 0 0" size="0.01 0.01 0.01" rgba="1 0 0 0.5" type="sphere" group="0" />
+                    <body name="slider_tip">
+                        <geom name="slider_tip" type="box" size="0.2 0.15 0.1"  mass="0.1" material="self"/>
+                    </body>
+                </body>
+            </body>
+        </body>
+        <body name = "slot" pos="0 0.3 1">
+            <geom name="slot_1" type="box" pos="-0.31 0 0" size="0.1 0.15 0.1"/>
+            <geom name="slot_2" type="box" pos="0.31 0 0" size="0.1 0.15 0.1"/>
+            <!-- <geom name="slot_2" type="box" size="0.1 0.2 0.1"/> -->
+        </body>
+    </worldbody>
+    <sensor>
+        <force name="force_ee" site="ft_frame"/>
+        <torque name="torque_ee" site="ft_frame"/>
+    </sensor>
+</mujoco>

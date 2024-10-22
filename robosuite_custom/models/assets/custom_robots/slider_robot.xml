@@ -1,0 +1,23 @@
+<mujoco model="slider_robot">
+    <actuator>
+        <!-- Actuate each slider joint -->
+        <motor name="slide_x_motor" joint="slider_x" ctrllimited="true" gear="50" ctrlrange="-1 1" />
+        <motor name="slide_y_motor" joint="slider_y" ctrllimited="true" gear="50" ctrlrange="-1 1" />
+
+        <motor name="hinge_z_motor" joint="hinge_z" ctrlrange="-1 1" gear="10" ctrllimited="true"/>
+    </actuator>
+    <worldbody>
+
+        <body name="cube" pos="0 0 0.12">
+            <!-- Geom for the visible part -->
+            <geom type="box" size="0.1 0.1 0.1" rgba="0.9 0.3 0.3 1" mass="0.1" group="0"/>
+            <geom type="box" size="0.1 0.1 0.1" rgba="0.9 0.3 0.3 1" group="1"/>
+
+            <!-- Define slider joints for movement along the x and y-axes -->
+            <joint name="slider_x" type="slide" axis="1 0 0" damping="0.1"/>
+            <joint name="slider_y" type="slide" axis="0 1 0" damping="0.1"/>
+            <joint name="hinge_z" type="hinge" axis="0 0 1" damping="0.2"/>
+        </body>
+    </worldbody>
+
+</mujoco>

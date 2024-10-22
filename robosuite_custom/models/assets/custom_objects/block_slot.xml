@@ -1,0 +1,17 @@
+<mujoco model="block_slot">
+  <worldbody>
+        <body>
+          <body name = "object" pos="0 0 0">
+              <geom type="box" pos="-0.30 0 0" size="0.1 0.15 0.1" group="0"/>
+              <geom type="box" pos="-0.30 0 0" size="0.1 0.15 0.1" group="1"/>
+              <geom type="box" pos="0.30 0 0" size="0.1 0.15 0.1" group="0"/>
+              <geom type="box" pos="0.30 0 0" size="0.1 0.15 0.1" group="1"/>
+              <geom type="box" pos="0 -0.2 0" size="0.46 0.05 0.1" group="1"/>
+
+          </body>
+          <site rgba="1. 0 0 0.5" size="0.005" pos="0 0.15 0" name="target_site"/>
+          <site rgba="1. 0 0 0.5" size="0.005" pos="0 -0.15 0" name="bottom_site"/>
+        </body>
+  </worldbody>
+
+</mujoco>
