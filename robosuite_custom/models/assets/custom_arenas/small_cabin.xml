@@ -1,4 +1,4 @@
-<mujoco model="empty_arena">
+<mujoco model="small_cabin">
   <asset>
     <texture builtin="gradient" height="256" rgb1=".9 .9 1." rgb2=".2 .3 .4" type="skybox" width="256"/>
     <texture file="../textures/light-gray-floor-tile.png" type="2d" name="texplane"/>
@@ -30,7 +30,7 @@
 
 
     <!-- front view -->
-    <camera mode="fixed" name="frontview" pos="0.00 1.4 0.9" xyaxes="-1.000 -0.013 -0.000 0.008 -0.579 0.815"/>
+    <camera mode="fixed" name="frontview" pos="0.00 1.4 1.648" xyaxes="-1.000 -0.013 -0.000 0.009 -0.634 0.773"/>
     <!-- <camera mode="fixed" name="frontview" pos="1.6 0 1.45" quat="0.56 0.43 0.43 0.56"/> -->
     <!-- bird view -->
     <camera mode="fixed" name="birdview" pos="0 0 1.5" xyaxes="1.000 0.000 0.000 0.000 1.000 0.000"/>
